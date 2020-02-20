@@ -1,0 +1,21 @@
+{% extends 'pzz/base.html' %}
+
+{% block title %}
+    Пицца-столицца
+{% endblock %}
+
+{% block content %}
+    <h2 class="mb-5">Наши пиццы:</h2>
+    {% for pizza in pizzas %}
+        <div class="card mb-4" style="width: 27rem;">
+            <img src="{{ pizza.image.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{pizza.name}}</h5>
+                <em class="card-text">{{ pizza.description }}.</em>
+                <p class="card-text mt-2" align="center" style="opacity: 0.5;">Цена: {{ pizza.price }} р</p>
+                <a href="#" class="btn btn-success col-4 offset-md-8" role="button">В корзину</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
