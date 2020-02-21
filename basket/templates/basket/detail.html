@@ -1,0 +1,42 @@
+{% extends "pzz/base.html" %}
+{% load static %}
+{% block title %}
+    Корзина
+{% endblock %}
+{% block content %}
+    <h1>Ваша корзина</h1>
+    <table class="cart">
+        <tbody>
+        {% for item in basket %}
+            {% with pizza=item.pizza %}
+                <tr>
+                    <td>
+                        <a href="{{ pizza.get_absolute_url }}">
+                            <img src="
+                                {% if pizza.image %}
+                                    {{ pizza.image.url }}
+                                {% else %}
+                                    {% static "pzz/not_found.jpg" %}
+                                {% endif %}">
+                        </a>
+                    </td>
+                    <td>{{ pizza.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td><a href="{% url "basket:basket_remove" pizza.id%}">Remove</a></td>
+                    <td class="num">${{ item.price }}</td>
+                    <td class="num">${{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="price">
+            <td>Общая сумма</td>
+            <td colspan="4"></td>
+            <td class="num">${{ basket.get_total_price }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url "pizzas_list_url" %}" class="button light">Заказать еще</a>
+        <a href="#" class="button">Оформить</a>
+    </p>
+{% endblock %}

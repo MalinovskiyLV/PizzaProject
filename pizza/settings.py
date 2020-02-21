@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pzz',
+    'basket'
 ]
 
 MIDDLEWARE = [
@@ -125,5 +126,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'pzz/static/pzz')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'pzz/static/pzz/media')
 
+BASKET_SESSION_ID = 'basket'
 
 NUMBER_PER_PAGE = 6

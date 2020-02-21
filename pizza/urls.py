@@ -16,15 +16,17 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 
+from basket import views
 from pzz.views import *
 
 urlpatterns = [
     path('pzz/', pizzas_list, name='pizzas_list_url'),
     path('admin/', admin.site.urls),
-    path('basket/', basket, name='basket_url'),
-
+    re_path(r'^$', views.basket_detail, name='basket_detail'),
+    re_path(r'^add/(?P<product_id>\d+)/$', views.basket_add, name='basket_add'),
+    re_path(r'^remove/(?P<product_id>\d+)/$', views.basket_remove, name='basket_remove'),
 ]
 
 if settings.DEBUG:

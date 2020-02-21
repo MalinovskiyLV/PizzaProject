@@ -16,5 +16,3 @@ class Pizza(models.Model):
         return self.name
 
 
-class Basket(models.Model):
-    pass
